@@ -18,6 +18,7 @@ Cada utilizador conhece os utilizadores com que está diretamente relacionado. N
 
 
 ❖	TAREFAS
+
 O objetivo principal será criar uma aplicação para gerir o backoffice da rede social. Após a modelação em UML serão feitas tarefas modulares; o desenvolvimento da estrutura de dados do rede social que contém os utilizadores, relações e mensagens dividir-se-á em tarefas:
 
 Tarefa 1: implementação do módulo de gestão de utilizadores
