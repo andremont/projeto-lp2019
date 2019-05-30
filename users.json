@@ -1,0 +1,48 @@
+{
+	"teste": {
+	        "userid": 0,
+	        "email": "teste@ismt.pt",
+	        "username": "teste",
+	        "title": "Test at ISMT",
+	        "password": "teste",
+	        "description": "Long description text"
+	    },
+    "Andre Monteiro": {
+        "connections": [
+            {
+                "userid1": 1,
+                "userid2": 2,
+                "connectionweight": 1,
+                "relation": "Professional"
+            }, 
+            {
+                "userid1": 2,
+                "userid2": 1,
+                "connectionweight": 1,
+                "relation": "Professional"
+            }
+        ],
+        "userid": 1,
+        "email": "andremonteiro@ismt.pt",
+        "username": "andremonteiro",
+        "title": "Teacher at ISMT",
+        "password": "password",
+        "description": "Long description"
+    },
+    "Jorge Duarte Dias": {
+        "connections": [
+            {
+                "userid1": 2,
+                "userid2": 1,
+                "connectionweight": 1,
+                "relation": "Professional"
+            }
+        ],
+        "userid": 2,
+        "email": "jorgejorge@sapo.pt",
+        "username": "jorgeduarte",
+        "title": "Funcionario CMC",
+        "password": "password",
+        "description": "Long description2"
+    }
+}

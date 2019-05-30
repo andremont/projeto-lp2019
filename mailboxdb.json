@@ -1,0 +1,48 @@
+{
+	"andremonteiro": {
+		"userid": 1,
+		"messageNumber": 2,
+		"messages": [{
+				"messageID": 1,
+				"date": "2019-01-01",
+				"title": "test",
+				"sender": "jorgeduarte",
+				"senderID": "2",
+				"receiver": "andremonteiro",
+				"receiverID": "1"
+			},
+			{
+				"messageID": 2,
+				"date": "2019-01-01",
+				"title": "test back",
+				"sender": "andremonteiro",
+				"senderID": "1",
+				"receiver": "jorgeduarte",
+				"receiverID": "2"
+			}
+		]
+	},
+	"jorgeduarte": {
+		"userid": 2,
+		"messageNumber": 2,
+		"messages": [{
+				"messageID": 1,
+				"date": "2019-01-01",
+				"title": "test",
+				"sender": "jorgeduarte",
+				"senderID": "2",
+				"receiver": "andremonteiro",
+				"receiverID": "1"
+			},
+			{
+				"messageID": 2,
+				"date": "2019-01-01",
+				"title": "test back",
+				"sender": "andremonteiro",
+				"senderID": "1",
+				"receiver": "jorgeduarte",
+				"receiverID": "2"
+			}
+		]
+	}
+}
