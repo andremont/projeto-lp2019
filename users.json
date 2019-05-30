@@ -16,8 +16,8 @@
                 "relation": "Professional"
             }, 
             {
-                "userid1": 2,
-                "userid2": 1,
+                "userid1": 1,
+                "userid2": 0,
                 "connectionweight": 1,
                 "relation": "Professional"
             }
