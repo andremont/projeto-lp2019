@@ -123,19 +123,20 @@ public class Utils {
 	/** Get connection array from user **/
 	private static ArrayList<Connection> extractConnectionsFromJson(JsonObject user) {
 		ArrayList<Connection> tempConnections = new ArrayList<Connection>();
-		JsonArray jsonConnection = user.get("connections").asJsonArray();
+		JsonArray jsonConnections = user.get("connections").asJsonArray();
 
-		for(int j=0; j < jsonConnection.size(); j++){
+		for(int j=0; j < jsonConnections.size(); j++){
 			Connection tempConnection = new Connection();
-
-			if (jsonConnection.contains("userid1"))
-				tempConnection.setUserID1(Integer.parseInt(jsonConnection.getValue("userid1").toString()));
-			if (jsonConnection.contains("userid2"))
-				tempConnection.setUserID2(Integer.parseInt(jsonConnection.getValue("userid2").toString()));
-			if (jsonConnection.contains("connectionweight"))
-				tempConnection.setConnectionWeigth(Integer.parseInt(jsonConnection.getValue("connectionweight").toString()));
-			if (jsonConnection.contains("relation"))
-				tempConnection.setRelation(getEnumFromString(Relationship.class, jsonConnection.getValue("relation").toString()));
+			JsonObject jsonConnection = jsonConnections.get(j).asJsonObject();
+			
+			if (jsonConnection.containsKey("userid1"))// contains("userid1"))
+				tempConnection.setUserID1(jsonConnection.getInt("userid1"));
+			if (jsonConnection.containsKey("userid2"))
+				tempConnection.setUserID2(jsonConnection.getInt("userid2"));
+			if (jsonConnection.containsKey("connectionweight"))
+				tempConnection.setConnectionWeigth(jsonConnection.getInt("connectionweight"));
+			if (jsonConnection.containsKey("relation"))
+				tempConnection.setRelation(getEnumFromString(Relationship.class, jsonConnection.getString("relation")));
 
 			tempConnections.add(tempConnection);
 		}
