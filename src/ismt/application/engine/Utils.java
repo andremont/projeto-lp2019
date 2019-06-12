@@ -342,19 +342,19 @@ public class Utils {
 				JsonObject jsonMessage = jsonMessages.getJsonObject(j);
 
 				if (jsonMessage.containsKey("messageID"))
-					tempMessage.setMessageID(Integer.parseInt(jsonMessage.getValue("messageID").toString()));
+					tempMessage.setMessageID(jsonMessage.getInt("messageID"));
 				if (jsonMessage.containsKey("date"))
-					tempMessage.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(jsonMessage.getValue("date").toString()));
+					tempMessage.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(jsonMessage.getString("date"));
 				if (jsonMessage.containsKey("title"))
-					tempMessage.setTitle(jsonMessage.getValue("title").toString());
+					tempMessage.setTitle(jsonMessage.getString("title"));
 				if (jsonMessage.containsKey("sender"))
-					tempMessage.setSender(jsonMessage.getValue("sender").toString());
+					tempMessage.setSender(jsonMessage.getString("sender"));
 				if (jsonMessage.containsKey("senderID"))
-					tempMessage.setSenderID(Integer.parseInt(jsonMessage.getValue("senderID").toString()));
+					tempMessage.setSenderID(jsonMessage.getInt("senderID"));
 				if (jsonMessage.containsKey("receiver"))
-					tempMessage.setReceiver(jsonMessage.getValue("receiver").toString());
+					tempMessage.setReceiver(jsonMessage.getString("receiver"));
 				if (jsonMessage.containsKey("receiverID"))
-					tempMessage.setReceiverID(Integer.parseInt(jsonMessage.getValue("receiverID").toString()));
+					tempMessage.setReceiverID(jsonMessage.getInt("receiverID"));
 
 				tempMessages.add(tempMessage);
 			}
