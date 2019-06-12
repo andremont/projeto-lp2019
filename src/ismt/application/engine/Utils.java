@@ -344,7 +344,7 @@ public class Utils {
 				if (jsonMessage.containsKey("messageID"))
 					tempMessage.setMessageID(jsonMessage.getInt("messageID"));
 				if (jsonMessage.containsKey("date"))
-					tempMessage.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(jsonMessage.getString("date"));
+					tempMessage.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(jsonMessage.getString("date")));
 				if (jsonMessage.containsKey("title"))
 					tempMessage.setTitle(jsonMessage.getString("title"));
 				if (jsonMessage.containsKey("sender"))
