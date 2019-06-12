@@ -41,26 +41,33 @@ public class PopularUsersScene extends SceneBase {
 		StackPane root_stack = new StackPane();
 
 		// Build labels
+		//
 		final Label labelPopularMessages = new Label("Utilizador mais comum por mensagens");
 		final Label labelPopularConnections = new Label("Utilizador mais comum por conexões");
 		labelPopularConnections.setFont(new Font("Arial", 20));
 		labelPopularMessages.setFont(new Font("Arial", 20));
 
 		// init user db to store users
+		// Instanciar o Objeto UserDb e a MailBoxD
 		UserDB db = new UserDB();
 		MailboxDB db2 = new MailboxDB();
 
+		// Declaração das duas listas, 1 para utilizadores com mais conexões e a outra
+		// para utilizadores com mais mensagens
 		LinkedList<User> userWithMustConnections = null;
 		LinkedList<Mailbox> userWithMustMessages = null;
 		// Get data from JSON file
+		// Obter os users e as mailboxes do ficheiro Json
 		try {
 			db = Utils.getAllUsers();
 			db2 = Utils.getAllMailboxes();
 
 			// get list with must connections
+			// Buscar os utilizadores com mais conexões
 			userWithMustConnections = getUserWithMustConnections(db, 3);
 
 			// get list with must messages
+			// Buscar os utilizadores com mais mensagens
 			userWithMustMessages = getUserWithMustMessages(db2, 3);
 
 		} catch (IOException e) {
@@ -74,7 +81,8 @@ public class PopularUsersScene extends SceneBase {
 		 * 
 		 * 
 		 */
-
+		// Criar as duas tabelas com base nas listas que se apresentam em cima, as com o
+		// top 3
 		TableView<User> tableMustConnections = CreateMustConnectiosTable(userWithMustConnections);
 		TableView<Mailbox> tableMustMessages = CreateMustMessagesTable(userWithMustMessages);
 
@@ -88,12 +96,17 @@ public class PopularUsersScene extends SceneBase {
 		});
 
 		// Build vertical container
-		//A vBox é um elemento de layout onde dá para inserir caracteristicas e outros elementos de layout "é como uma div do HTML"
+		// A vBox é um elemento de layout onde dá para inserir caracteristicas e outros
+		// elementos de layout "é como uma div do HTML"
+		// .getchildren.addAll, adicionar o título e tabela
 		final VBox vbox_connections = new VBox();
 		vbox_connections.setSpacing(5);
 		vbox_connections.setPadding(new Insets(10, 0, 0, 10));
 		vbox_connections.getChildren().addAll(labelPopularConnections, tableMustConnections);
 
+		// A vBox é um elemento de layout onde dá para inserir caracteristicas e outros
+		// elementos de layout "é como uma div do HTML"
+		// .getchildren.addAll, adicionar o título e tabela
 		final VBox vbox_messages = new VBox();
 		vbox_messages.setSpacing(5);
 		vbox_messages.setPadding(new Insets(200, 0, 0, 10));
@@ -110,6 +123,7 @@ public class PopularUsersScene extends SceneBase {
 		border_panel_connections.setBottom(pane_for_buttons);
 
 		// Add all controls on root pane
+		// Acrescimo da box das mensagens, das conexões e o botão de back
 		root_stack.getChildren().addAll(vbox_messages, vbox_connections, border_panel_connections);
 
 		// Create new scene with default size and filled pane
@@ -123,14 +137,15 @@ public class PopularUsersScene extends SceneBase {
 		return tempScene;
 	}
 
-	private LinkedList<User> getUserWithMustConnections(UserDB userDB, int numUsers) {
+	public LinkedList<User> getUserWithMustConnections(UserDB userDB, int numUsers) {
 
 		// bubble sort algorithm
 		// for some explanation, please see:
-		// https://www.mkyong.com/java/java-bubble-sort-example/ 
-		// Tenho 2 ciclos for em que o primeiro vai até ao final do tamanho da lista ou seja
-		//o "UsersMustConnections", o segundo vai começar na possição 1 e vai até ao final da lista, menos do valor do i
-		//	
+		// https://www.mkyong.com/java/java-bubble-sort-example/
+		// Tenho 2 ciclos for em que o primeiro vai até ao final do tamanho da lista ou
+		// seja
+		// o "UsersMustConnections" e o segundo vai começar na possição 1 e vai até ao
+		// final da lista, menos do valor do i
 		ArrayList<User> usersMustConnections = userDB.getUsers();
 		User temp;
 		for (int i = 0; i < usersMustConnections.size(); i++) {
@@ -144,7 +159,8 @@ public class PopularUsersScene extends SceneBase {
 				}
 			}
 			// if the number of users is reached we return the subList
-			//LinkedList utilizei porque é a única que garante a ordem dos registos em memória
+			// LinkedList usei porque é a única que garante a ordem dos registos em memória,
+			// em vez de uma Arraylist por exemplo
 			if ((numUsers - 1) == i) {
 				return new LinkedList<User>(usersMustConnections.subList(0, numUsers));
 			}
@@ -152,11 +168,14 @@ public class PopularUsersScene extends SceneBase {
 		return new LinkedList<User>(usersMustConnections);
 	}
 
-	private LinkedList<Mailbox> getUserWithMustMessages(MailboxDB mailboxDB, int numUsers) {
+	public LinkedList<Mailbox> getUserWithMustMessages(MailboxDB mailboxDB, int numUsers) {
 		// bubble sort algorithm
 		// for some explanation, please see:
 		// https://www.mkyong.com/java/java-bubble-sort-example/
-		//
+		// Tenho 2 ciclos for em que o primeiro vai até ao final do tamanho da lista ou
+		// seja
+		// o "UsersMustConnections" e o segundo vai começar na possição 1 e vai até ao
+		// final da lista, menos do valor do i
 		ArrayList<Mailbox> usersMustMessages = mailboxDB.getMailboxes();
 		Mailbox temp;
 		for (int i = 0; i < usersMustMessages.size(); i++) {
@@ -170,6 +189,8 @@ public class PopularUsersScene extends SceneBase {
 
 			}
 			// if the number of users is reached we return the subList
+			// LinkedList usei porque é a única que garante a ordem dos registos em memória,
+			// em vez de uma Arraylist por exemplo
 			if ((numUsers - 1) == i) {
 				return new LinkedList<Mailbox>(usersMustMessages.subList(0, numUsers));
 			}
@@ -179,6 +200,8 @@ public class PopularUsersScene extends SceneBase {
 
 	private TableView<User> CreateMustConnectiosTable(LinkedList<User> users) {
 		// Build table
+		// Criação das tabelas, em que neste caso cada metódo retorna a uma tabela, ou
+		// seja o método entra na lista do top e inser a informação na tabela
 		TableView<User> table = new TableView<User>();
 		table.setEditable(true);
 		TableColumn<User, String> userIDCol = new TableColumn<>("UserID");
@@ -188,16 +211,19 @@ public class PopularUsersScene extends SceneBase {
 		table.getColumns().addAll(userIDCol, nameCol, connectionsCol);
 
 		// Obtain users' data
-		// É uma lista que fica com um observable que fica á "escuta" de alterações que acontecem na lista
+		// É uma lista que fica com um observable que fica á "escuta" de alterações que
+		// acontecem na lista
 		final ObservableList<User> data = FXCollections.observableArrayList(users);
 
 		// Bind data to User class properties
+		// Onde se atribui os atributos do utilizador a cada coluna da tabela
 		userIDCol.setCellValueFactory(new PropertyValueFactory<User, String>("userID"));
 		nameCol.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
 		connectionsCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("connectionNumber"));
 
 		// Bind data to table
-		//É para as tabelas redimencionarem consoante o número de linhas que a a tabela tem (Utilizadors)
+		// É para as tabelas redimencionarem consoante o número de linhas que a a tabela
+		// tem (Utilizadors)
 		table.setItems(data);
 
 		table.setFixedCellSize(32);
@@ -211,6 +237,8 @@ public class PopularUsersScene extends SceneBase {
 
 	private TableView<Mailbox> CreateMustMessagesTable(LinkedList<Mailbox> users) {
 		// Build table
+		// Criação das tabelas, em que neste caso cada metódo retorna a uma tabela, ou
+		// seja o método entra na lista do top e inser a informação na tabela
 		TableView<Mailbox> table = new TableView<Mailbox>();
 		table.setEditable(true);
 		TableColumn<Mailbox, String> userIDCol = new TableColumn<>("UserID");
@@ -223,11 +251,14 @@ public class PopularUsersScene extends SceneBase {
 		final ObservableList<Mailbox> data = FXCollections.observableArrayList(users);
 
 		// Bind data to User class properties
+		// Onde se atribui os atributos do utilizador a cada coluna da tabela
 		userIDCol.setCellValueFactory(new PropertyValueFactory<Mailbox, String>("userID"));
 		nameCol.setCellValueFactory(new PropertyValueFactory<Mailbox, String>("userName"));
 		messagesCol.setCellValueFactory(new PropertyValueFactory<Mailbox, Integer>("messageNumber"));
 
 		// Bind data to table
+		// É para as tabelas redimencionarem consoante o número de linhas que a a tabela
+		// tem (Utilizadors)
 		table.setItems(data);
 
 		table.setFixedCellSize(32);
