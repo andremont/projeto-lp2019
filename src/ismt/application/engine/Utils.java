@@ -320,12 +320,20 @@ public class Utils {
 			JsonObject user = mailObject.get(userNames.get(i)).asJsonObject();
 			Mailbox tempMailbox = new Mailbox();
 
-			if (user.containsKey("userid"))
+			/*if (user.containsKey("userid"))
 				tempMailbox.setUserID(Integer.parseInt(user.get("userid").toString()));
 			if (user.containsKey("messageNumber"))
 				tempMailbox.setMessageNumber(Integer.parseInt(user.get("messageNumber").toString()));
 			if (user.containsKey("messages"))
 				tempMailbox.setMessages(extractMessagesFromJson(user));
+			*/
+			if (user.containsKey("userid"))
+				tempMailbox.setUserID(user.getInt("userid"));
+			if (user.containsKey("messageNumber"))
+				tempMailbox.setMessageNumber(user.getInt("messageNumber"));
+			if (user.containsKey("messages"))
+				tempMailbox.setMessages(extractMessagesFromJson(user));
+			
 			mailboxdb.insertMailbox(tempMailbox);
 		}
 		return mailboxdb;
@@ -350,11 +358,11 @@ public class Utils {
 				if (jsonMessage.containsKey("sender"))
 					tempMessage.setSender(jsonMessage.getString("sender"));
 				if (jsonMessage.containsKey("senderID"))
-					tempMessage.setSenderID(jsonMessage.getInt("senderID"));
+					tempMessage.setSenderID(Integer.parseInt(jsonMessage.getString("senderID")));
 				if (jsonMessage.containsKey("receiver"))
 					tempMessage.setReceiver(jsonMessage.getString("receiver"));
 				if (jsonMessage.containsKey("receiverID"))
-					tempMessage.setReceiverID(jsonMessage.getInt("receiverID"));
+					tempMessage.setReceiverID(Integer.parseInt(jsonMessage.getString("receiverID")));
 
 				tempMessages.add(tempMessage);
 			}
