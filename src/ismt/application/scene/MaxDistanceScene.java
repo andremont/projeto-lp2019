@@ -1,4 +1,3 @@
-package src.ismt.application.scene;
 package ismt.application.scene;
 
 import java.io.IOException;
@@ -6,6 +5,8 @@ import java.io.IOException;
 import ismt.application.engine.User;
 import ismt.application.engine.Utils;
 import ismt.application.scene.SceneBase;
+import ismt.application.engine.Connection;
+
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,10 +20,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.Arrays; 
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MaxDistanceScene extends SceneBase{
 
@@ -76,11 +80,13 @@ public class MaxDistanceScene extends SceneBase{
 	}
 
 	private Graph CreateGraph() {
-		List<Connection> connections = Utils.getAllConnections();
+		
+		ArrayList<Connection> connections = new ArrayList<Connection>();
+		
 
-		Graph g = new Graph(connections.length());
+		Graph g = new Graph(connections.size());
 
-		for (var conn : connections) {
+		for (Connection conn : connections) {
 			g.addEdge(conn.getUserID1(), conn.getUserID2());
 		}
 
@@ -175,7 +181,7 @@ public class MaxDistanceScene extends SceneBase{
   
             Queue<Integer> q = new LinkedList<>(); 
   
-            q.add(u); 
+            q.add(u1); 
               
             // distance of u1 from u1 will be 0  
             dis[u1] = 0; 
@@ -220,13 +226,13 @@ public class MaxDistanceScene extends SceneBase{
             t1 = bfs(0); 
               
             // second bfs to find actual longest path  
-            t2 = bfs(t1.first); 
+            t2 = bfs(t1.getValue()); 
   
-            return t.second; 
+            return t1.getValue(); 
 		} 
 		
 		public int longestPathBetweenUsers(User u1, User u2) {
-			return bfsToUser(u1.getUserID(), u2.getUserID()).second;
+			return bfsToUser(u1.getUserID(), u2.getUserID()).getValue();
 		}
     } 
 }
