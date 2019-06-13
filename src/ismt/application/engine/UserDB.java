@@ -3,6 +3,19 @@ package ismt.application.engine;
 import java.util.ArrayList;
 
 public class UserDB {
+	/**
+	 * @param users
+	 */
+	public UserDB(ArrayList<User> users) {
+		super();
+		this.users = users;
+	}
+	
+	public UserDB() {
+		super();
+		this.users = new ArrayList<User>();
+	}
+
 	private ArrayList<User> users;
 
 	/**
