@@ -50,6 +50,7 @@ public class UsersScene extends SceneBase{
         
         // Get data from JSON file
         try {
+        	
 			 db = Utils.getAllUsers();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
