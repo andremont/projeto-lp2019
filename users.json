@@ -44,5 +44,53 @@
         "title": "Funcionario CMC",
         "password": "password",
         "description": "Long description2"
-    }
+    },
+    
+    "Rodrigo Queiros": {
+        "connections": [
+            {
+                "userid1": 3,
+                "userid2": 2,
+                "connectionweight": 5,
+                "relation": "Professional"
+            }            
+        ],
+        "userid": 3,
+        "email": "rodrigo@ismt.pt",
+        "username": "rodrigo",
+        "title": "Student at ISMT",
+        "password": "password",
+        "description": "Long description"
+},
+    "Rodrigo": {
+        "connections": [
+            {
+                "userid1": 4,
+                "userid2": 3,
+                "connectionweight": 1,
+                "relation": "Professional"
+            }            
+        ],
+        "userid": 4,
+        "email": "rodrigo@ismt.pt",
+        "username": "rodrigo",
+        "title": "Student at ISMT",
+        "password": "password",
+        "description": "Long description"
+},    "Queiros": {
+        "connections": [
+            {
+                "userid1": 5,
+                "userid2": 4,
+                "connectionweight": 1,
+                "relation": "Professional"
+            }            
+        ],
+        "userid": 5,
+        "email": "rodrigo@ismt.pt",
+        "username": "rodrigo",
+        "title": "Student at ISMT",
+        "password": "password",
+        "description": "Long description"
+}
 }
